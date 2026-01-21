@@ -15,6 +15,7 @@ router.post('/register', async (req, res) => {
  
 // POST /api/users/login - Authenticate a user and return a token
 router.post('/login', async (req, res) => {
+    console.log("resgister req.body:", req.body);
   const user = await User.findOne({ email: req.body.email });
  
   if (!user) {
@@ -31,5 +32,4 @@ router.post('/login', async (req, res) => {
   res.json({ token, user });
 });
  
-module.exports = router;
 module.exports = router;
