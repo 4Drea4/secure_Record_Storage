@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
     if (note.user.toString() !== req.user._id.toString()){
         return res.status(403).json({message: "User not authorized"})
     }
-    const updateNote = await Note.findByIdAndUpdtae(
+    const updateNote = await Note.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new:true, runValidators:true}
