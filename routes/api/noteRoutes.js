@@ -3,6 +3,7 @@ const  Note  = require('../../models/Note');
 const { authMiddleware } = require('../../utils/auth');
  
 // Apply authMiddleware to all routes in this file
+console.log("authMiddleware :" ,typeof authMiddleware);
 router.use(authMiddleware);
  
 // GET /api/notes - Get all notes for the logged-in user

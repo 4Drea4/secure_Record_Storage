@@ -4,18 +4,28 @@ const { signToken } = require('../../utils/auth');
  
 // POST /api/users/register - Create a new user
 router.post('/register', async (req, res) => {
+
   try {
+
+    console.log('Register Body:',req.body);
     const user = await User.create(req.body);
     const token = signToken(user);
     res.status(201).json({ token, user });
   } catch (err) {
-    res.status(400).json(err);
+    console.log('Register error', err);
+    res.status(400).json({
+        message: err.message,
+        code: err.code,
+        keyValue: err.keyValue,
+        errors: err.errors
+
+    })
   }
 });
  
 // POST /api/users/login - Authenticate a user and return a token
 router.post('/login', async (req, res) => {
-    console.log("resgister req.body:", req.body);
+    console.log("REGISTER req.body:", req.body);
   const user = await User.findOne({ email: req.body.email });
  
   if (!user) {
